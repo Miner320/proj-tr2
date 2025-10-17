@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title> Teste </title>
+{% endblock %}
+
+{% block body %}
+<div class="d-flex">
+<nav class="sidebar bg-dark w-25 ">
+        <div class="d-flex flex-column align-items-start">
+            <h4 class="text-white p-3 border-bottom w-100">Sensores</h4>
+            <ul class="nav nav-pills flex-column mb-auto w-100">
+
+                {% for sensor in sensorList %}
+
+                <li class="nav-item p-2 mb-1 ">
+                    <button class="" onclick="setCurrentId('{{sensor.id}}')"> {{sensor.id}} - {{sensor.local}} </button>
+                </li>
+
+                {% endfor %}
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="graphSection" class="border border-4 rounded-3 p-4 m-3 w-75" >
+
+        <img class="w-50 mx-auto d-block " id="tempGraph" src="" alt="">
+        <img class="w-50 mx-auto d-block " id="umiGraph" src="" alt="">
+        <img class="w-50 mx-auto d-block " id="dustGraph" src="" alt="">
+
+
+    </div>
+
+</div>
+
+<script>
+
+function setCurrentId(id){
+
+    const tempGraphURL = "static/tempGraph/"
+    const umiGraphURL = "static/umiGraph/"
+    const dustGraphURL = "static/dustGraph/"
+
+    
+    document.getElementById("tempGraph").src = tempGraphURL+id+".png";
+    document.getElementById("umiGraph").src = umiGraphURL+id+".png";
+    document.getElementById("dustGraph").src = dustGraphURL+id+".png";
+
+}
+
+</script>
+
+
+{% endblock %}

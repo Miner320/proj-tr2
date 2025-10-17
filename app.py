@@ -29,6 +29,7 @@ def index():
     sensors = Sensor.query.all()
     return render_template("index.html", sensorList=sensors)
 
+
 if(__name__ == "__main__"):
     with app.app_context():
         db.create_all()

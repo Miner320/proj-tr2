@@ -4,12 +4,13 @@ CREATE TABLE Sensores(
     Local TEXT
 
 );
-
+--
 CREATE TABLE Registros(
 
     Id INTEGER PRIMARY KEY,
     Valor FLOAT,
     Tipo INTEGER,
+    TimeStamp Integer,
     Sensor INTEGER,
     FOREIGN KEY (Sensor)
         REFERENCES Sensores(Id)

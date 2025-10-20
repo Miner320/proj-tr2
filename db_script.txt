@@ -1,0 +1,19 @@
+CREATE TABLE Sensores(
+
+    Id INTEGER PRIMARY KEY,
+    Local TEXT
+
+);
+
+CREATE TABLE Registros(
+
+    Id INTEGER PRIMARY KEY,
+    Valor FLOAT,
+    Tipo INTEGER,
+    Sensor INTEGER,
+    FOREIGN KEY (Sensor)
+        REFERENCES Sensores(Id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+
+);

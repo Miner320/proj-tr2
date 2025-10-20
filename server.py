@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from aux import AddSensors
+from aux import AddSensors, CreateRegistryRow
+import json
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -31,6 +32,23 @@ class MyHandler(BaseHTTPRequestHandler):
         else:
             self.send_response(404)
             self.wfile.write(b"<p> Page not found </p>")
+
+    def do_POST(self):
+        content_length = int(self.headers.get("Content-Length"))
+        data = self.rfile.read(content_length)
+        data = json.loads(data)
+        print(data)
+        rowWasCreated = CreateRegistryRow(data)
+        
+        if(rowWasCreated):
+            self.send_response(201)
+            return_msg = "Row was created"
+        else:
+            self.send_response(500)
+            return_msg = "<p>An error has ocurred</p>"
+
+        self.end_headers()
+        self.wfile.write(return_msg.encode())
 
 
 PORT = 8000

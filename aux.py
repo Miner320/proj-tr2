@@ -80,6 +80,23 @@ def AddSensors(HTML_file):
 
     return str(soup)
 
+def CreateRegistryRow(json_data):
+    try:
+        connection = sqlite3.connect(DB_file)
+        cursor = connection.cursor()
+        command = f"""
+            Insert into Registros(Valor, Sensor, Tipo, TimeStamp)
+            values
+            ({json_data["Valor"]}, {json_data["Sensor"]}, {json_data["Tipo"]}, {json_data["TimeStamp"]});
+            """
+        cursor.execute(command)
+        connection.commit()
+        return True # indica que registro foi criado
+
+    except:
+        return False
+
+
 def MakeGraphsForSensor(sensorId):
 
     DataList = RetrieveSensorData(sensorId)

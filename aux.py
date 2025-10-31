@@ -64,7 +64,7 @@ def AddSensors(HTML_file):
 
     for i in range(0, len(SensorList)):
         li = soup.new_tag("li")
-        li['class'] = "nav-item p-2 mb-1"
+        li['class'] = "nav-item p-2 mb-1 m-auto"
         list.insert_after(li)
 
     list_pointer = 0
@@ -74,9 +74,10 @@ def AddSensors(HTML_file):
         button = soup.new_tag("button")
         button.string = f"{SensorList[list_pointer][0]} - {SensorList[list_pointer][1]}"
         button["onclick"] = f"setCurrentId('{SensorList[list_pointer][0]}')"
+        button["class"] = "btn btn-warning"
         list_pointer += 1
 
-        li.insert_after(button)
+        li.append(button)
 
     return str(soup)
 

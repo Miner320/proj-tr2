@@ -18,3 +18,15 @@ CREATE TABLE Registros(
             ON UPDATE CASCADE
 
 );
+
+CREATE TABLE Transmissions(
+
+    Id INTEGER PRIMARY KEY,
+    TimeStamp INTEGER,
+    Sensor INTEGER UNIQUE,
+    FOREIGN KEY(Sensor)
+        REFERENCES Sensores(Id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+
+)

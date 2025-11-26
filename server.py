@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from aux import AddSensors, CreateRegistryRow
+from aux import AddSensors, CreateRegistryRow, GetActiveSensors
 import json
 
 class MyHandler(BaseHTTPRequestHandler):
@@ -28,6 +28,17 @@ class MyHandler(BaseHTTPRequestHandler):
                 img_data = f.read()
 
             self.wfile.write(img_data)
+
+        elif("active" in self.path):
+            activeSensors = GetActiveSensors()  
+            json_dict = json.dumps({'sensors':activeSensors}).encode("utf-8")
+
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(json_dict)))
+            self.end_headers()
+
+            self.wfile.write(json_dict)
 
         else:
             self.send_response(404)

@@ -66,21 +66,41 @@ def AddSensors(HTML_file):
     for i in range(0, len(SensorList)):
         li = soup.new_tag("li")
         li['class'] = "nav-item p-2 mb-1 m-auto"
-        list.insert_after(li)
+        list.append(li)
 
     list_pointer = 0
     li_tags = soup.find_all("li")
 
     for li in li_tags:
         button = soup.new_tag("button")
+        li["id"] = SensorList[list_pointer][0]
         button.string = f"{SensorList[list_pointer][0]} - {SensorList[list_pointer][1]}"
         button["onclick"] = f"setCurrentId('{SensorList[list_pointer][0]}')"
-        button["class"] = "btn btn-warning"
+        button["class"] = "btn btn-info"
         list_pointer += 1
 
         li.append(button)
 
     return str(soup)
+
+def GetActiveSensors():
+    try:
+        connection = sqlite3.connect(DB_file)
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT DISTINCT(Sensor) from Registros where (strftime('%s','now') - TimeStamp)<1800;")
+        activeSensors = cursor.fetchall()
+        activeSensors = [item[0] for item in activeSensors]
+
+        connection.close()
+        return activeSensors
+
+    except:
+        connection.close()
+        print("an error has ocurred in the DB")
+
+def InsertTransmissionRow(SensorId){pass}
+
 
 def CreateRegistryRow(json_data):
     try:

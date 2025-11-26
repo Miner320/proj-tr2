@@ -13,7 +13,7 @@
 <nav class="sidebar bg-dark w-25 ">
         <div class="d-flex flex-column align-items-start text-center">
             <h4 class="text-white p-3 border-bottom w-100">Sensores</h4>
-            <ul class="nav nav-pills flex-column mb-auto w-100">
+            <ul id="SensorList" class="nav nav-pills flex-column mb-auto w-100">
             </ul>
         </div>
     </nav>
@@ -42,6 +42,35 @@ function setCurrentId(id){
     document.getElementById("umiGraph").src = umiGraphURL+id+".png";
     document.getElementById("dustGraph").src = dustGraphURL+id+".png";
 
+}
+
+function getActiveSensors(){
+
+    fetch("http://localhost:8000/active").then(response => response.json()).then(
+        data => {
+        const sensorList = data.sensors;
+        console.log(sensorList);
+
+        const items = document.getElementById("SensorList").querySelectorAll("li");
+
+        console.log(items)
+
+        items.forEach(element => {
+            if(sensorList.includes(Number(element.id)) == false){
+                element.querySelector("button").classList.remove("btn-info");
+                element.querySelector("button").classList.add("btn-warning");
+            }
+            
+        });
+
+        }
+    )
+    
+
+}
+
+window.onload = function(){
+    getActiveSensors();
 }
 
 </script>

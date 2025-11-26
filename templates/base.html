@@ -69,6 +69,59 @@ function getActiveSensors(){
 
 }
 
+function deleteSensor(id){
+
+    fetch("http://localhost:8000/deleteSensor", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({sensor: id})
+    }).then(response => {
+        if(response.ok){
+            const li = document.getElementById(id);
+            if(li) li.remove();
+        } else {
+            response.text().then(t => alert('Delete failed: ' + t))
+        }
+    }).catch(err => {
+        alert('Request error: ' + err)
+    });
+
+}
+
+function renameSensor(id){
+    const newName = prompt('Enter new name for sensor ' + id + ':')
+    if(newName === null) return; // user cancelled
+    const trimmed = newName.trim()
+    if(trimmed.length === 0){
+        alert('Name cannot be empty')
+        return
+    }
+
+    fetch("http://localhost:8000/renameSensor", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({sensor: id, name: trimmed})
+    }).then(response => {
+        if(response.ok){
+            // update the visible button label inside the li
+            const li = document.getElementById(id);
+            if(li){
+                const mainBtn = li.querySelector("button");
+                if(mainBtn) mainBtn.textContent = `${id} - ${trimmed}`;
+            }
+        } else {
+            response.text().then(t => alert('Rename failed: ' + t))
+        }
+    }).catch(err => {
+        alert('Request error: ' + err)
+    });
+
+}
+
 const minuteInterval = 30;
 setInterval(getActiveSensors, minuteInterval*60*1000);
 

@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from aux import AddSensors, CreateRegistryRow, GetActiveSensors, InsertTransmissionRow
+from aux import AddSensors, CreateRegistryRow, GetActiveSensors, InsertTransmissionRow, DeleteSensor, RenameSensor
 import json, re as regex
 
 class MyHandler(BaseHTTPRequestHandler):
@@ -77,6 +77,53 @@ class MyHandler(BaseHTTPRequestHandler):
             else:
                 self.send_response(500)
                 return_msg = "<p>An error has ocurred</p>"
+
+            self.end_headers()
+            self.wfile.write(return_msg.encode())
+        elif( regex.search(r"\/deleteSensor", self.path) ):
+            content_length = int(self.headers.get("Content-Length"))
+            data = self.rfile.read(content_length)
+            data = json.loads(data)
+            print("Delete request:", data)
+
+            try:
+                ok = DeleteSensor(int(data.get("sensor")))
+                if ok:
+                    self.send_response(200)
+                    return_msg = "Sensor deleted"
+                else:
+                    self.send_response(500)
+                    return_msg = "Failed to delete sensor"
+            except Exception as e:
+                print(e)
+                self.send_response(500)
+                return_msg = "Error processing request"
+
+            self.end_headers()
+            self.wfile.write(return_msg.encode())
+        elif( regex.search(r"\/renameSensor", self.path) ):
+            content_length = int(self.headers.get("Content-Length"))
+            data = self.rfile.read(content_length)
+            data = json.loads(data)
+            print("Rename request:", data)
+
+            try:
+                sensor_id = int(data.get("sensor"))
+                new_name = data.get("name")
+                if new_name is None:
+                    raise ValueError("Missing name")
+
+                ok = RenameSensor(sensor_id, new_name)
+                if ok:
+                    self.send_response(200)
+                    return_msg = "Sensor renamed"
+                else:
+                    self.send_response(500)
+                    return_msg = "Failed to rename sensor"
+            except Exception as e:
+                print(e)
+                self.send_response(500)
+                return_msg = "Error processing rename request"
 
             self.end_headers()
             self.wfile.write(return_msg.encode())

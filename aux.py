@@ -82,7 +82,65 @@ def AddSensors(HTML_file):
 
         li.append(button)
 
+        delete_btn = soup.new_tag("button")
+        delete_btn.string = "Delete"
+        delete_btn["onclick"] = f"deleteSensor('{SensorList[list_pointer-1][0]}')"
+        delete_btn["class"] = "btn btn-danger ms-2"
+        li.append(delete_btn)
+
+        # add a rename button to allow changing the sensor 'Local' name
+        rename_btn = soup.new_tag("button")
+        rename_btn.string = "Rename"
+        rename_btn["onclick"] = f"renameSensor('{SensorList[list_pointer-1][0]}')"
+        rename_btn["class"] = "btn btn-secondary ms-2"
+        li.append(rename_btn)
+
     return str(soup)
+
+
+def DeleteSensor(sensorId):
+    try:
+        connection = sqlite3.connect(DB_file)
+        cursor = connection.cursor()
+
+        # remove rows referencing the sensor in other tables first
+        cursor.execute(f"DELETE FROM Registros WHERE Sensor={int(sensorId)};")
+        cursor.execute(f"DELETE FROM Transmissions WHERE Sensor={int(sensorId)};")
+
+        # remove the sensor itself
+        cursor.execute(f"DELETE FROM Sensores WHERE Id={int(sensorId)};")
+
+        connection.commit()
+        connection.close()
+        return True
+
+    except Exception as e:
+        try:
+            connection.close()
+        except:
+            pass
+        print(e)
+        return False
+
+
+def RenameSensor(sensorId, newLocal):
+    try:
+        connection = sqlite3.connect(DB_file)
+        cursor = connection.cursor()
+
+        # use parameterized query to avoid injection and handle special chars
+        cursor.execute(f"UPDATE Sensores SET Local = {str(newLocal)} WHERE Id = {int(sensorId)};")
+
+        connection.commit()
+        connection.close()
+        return True
+    except Exception as e:
+        try:
+            connection.close()
+        except:
+            pass
+        print(e)
+        return False
 
 def GetActiveSensors():
     try:

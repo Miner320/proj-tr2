@@ -46,7 +46,7 @@ function setCurrentId(id){
 
 function getActiveSensors(){
 
-    fetch("http://localhost:8000/active").then(response => response.json()).then(
+    fetch("http://localhost:8000/activeSensors").then(response => response.json()).then(
         data => {
         const sensorList = data.sensors;
         console.log(sensorList);

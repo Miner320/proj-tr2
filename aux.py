@@ -89,7 +89,7 @@ def GetActiveSensors():
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
 
-        cursor.execute("SELECT DISTINCT(Sensor) from Registros where (strftime('%s','now') - TimeStamp)<1800;")
+        cursor.execute("SELECT DISTINCT(Sensor) from Transmissions where (strftime('%s','now') - TimeStamp)<1800;")
         activeSensors = cursor.fetchall()
         activeSensors = [item[0] for item in activeSensors]
 
@@ -117,9 +117,9 @@ def InsertTransmissionRow(SensorId):
         connection.commit()
         connection.close()
         return True
-    except:
+    except Exception as e:
         connection.close()
-        print("an error has ocurred in the DB")
+        print(e)
         return False
 
 
@@ -133,16 +133,22 @@ def CreateRegistryRow(json_data):
             ({json_data["Valor"]}, {json_data["Sensor"]}, {json_data["Tipo"]}, {json_data["TimeStamp"]});
             """
         cursor.execute(command)
-
-        if( not(InsertTransmissionRow(int(json_data["Sensor"]))) ):
-            raise RuntimeError()
-
         connection.commit()
         connection.close()
+
+        print("Registro feito")
+
+        if( not(InsertTransmissionRow(int(json_data["Sensor"]))) ):
+            raise RuntimeError("Erro no registro da transmissão")
+
+
+        MakeGraphsForSensor(int(json_data["Sensor"]))
+        print("Made graphs")
+
         return True # indica que registro foi criado
 
-    except:
-        connection.close()
+    except Exception as e:
+        print(e)
         return False
 
 

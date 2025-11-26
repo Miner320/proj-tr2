@@ -69,6 +69,9 @@ function getActiveSensors(){
 
 }
 
+const minuteInterval = 30;
+setInterval(getActiveSensors, minuteInterval*60*1000);
+
 window.onload = function(){
     getActiveSensors();
 }

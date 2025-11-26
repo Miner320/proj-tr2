@@ -18,7 +18,7 @@ CREATE TABLE Registros(
             ON UPDATE CASCADE
 
 );
-
+--
 CREATE TABLE Transmissions(
 
     Id INTEGER PRIMARY KEY,
@@ -29,4 +29,4 @@ CREATE TABLE Transmissions(
             ON DELETE CASCADE
             ON UPDATE CASCADE
 
-)
+);

@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as Soup
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
+import time
 
 DB_file = "sampleDB.db"
 
@@ -99,7 +100,27 @@ def GetActiveSensors():
         connection.close()
         print("an error has ocurred in the DB")
 
-def InsertTransmissionRow(SensorId){pass}
+def InsertTransmissionRow(SensorId):
+    try:
+        connection = sqlite3.connect(DB_file)
+        cursor = connection.cursor()
+
+        # primeiro verificar se já existe registro para o sensor na tabela Transmissions
+        cursor.execute(f"Select * from Transmissions where Sensor={SensorId};")
+        if(cursor.fetchall() == ([]) ):
+            # nesse caso ainda não há registro e precisamos criar um
+            cursor.execute(f"Insert into Transmissions(TimeStamp,Sensor) values ({int(time.time())},{SensorId})")
+        else:
+            # nesse caso já existe um registro e precisamos alterar o timestamp
+            cursor.execute(f"Update Transmissions set TimeStamp={int(time.time())} where Sensor={SensorId};")
+
+        connection.commit()
+        connection.close()
+        return True
+    except:
+        connection.close()
+        print("an error has ocurred in the DB")
+        return False
 
 
 def CreateRegistryRow(json_data):
@@ -112,10 +133,16 @@ def CreateRegistryRow(json_data):
             ({json_data["Valor"]}, {json_data["Sensor"]}, {json_data["Tipo"]}, {json_data["TimeStamp"]});
             """
         cursor.execute(command)
+
+        if( not(InsertTransmissionRow(int(json_data["Sensor"]))) ):
+            raise RuntimeError()
+
         connection.commit()
+        connection.close()
         return True # indica que registro foi criado
 
     except:
+        connection.close()
         return False
 
 

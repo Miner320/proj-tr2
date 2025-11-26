@@ -125,6 +125,7 @@ db_creation_command = db_creation_script.read().split("--")
 
 cursor.execute(db_creation_command[0])
 cursor.execute(db_creation_command[1])
+cursor.execute(db_creation_command[2])
 
 db_creation_script.close()
 

@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from aux import AddSensors, CreateRegistryRow, GetActiveSensors
-import json
+from aux import AddSensors, CreateRegistryRow, GetActiveSensors, InsertTransmissionRow
+import json, re as regex
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -19,7 +19,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
             self.wfile.write(index_data.encode())
 
-        elif("static" in self.path ):
+        elif( regex.search( r"\/static\/.*", self.path) ):
             self.send_response(200)
             self.send_header("Content-type","image/png")
             self.end_headers()
@@ -29,7 +29,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
             self.wfile.write(img_data)
 
-        elif("active" in self.path):
+        elif( regex.search(r"\/activeSensors", self.path) ):
             activeSensors = GetActiveSensors()  
             json_dict = json.dumps({'sensors':activeSensors}).encode("utf-8")
 
@@ -45,21 +45,44 @@ class MyHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"<p> Page not found </p>")
 
     def do_POST(self):
-        content_length = int(self.headers.get("Content-Length"))
-        data = self.rfile.read(content_length)
-        data = json.loads(data)
-        print(data)
-        rowWasCreated = CreateRegistryRow(data)
-        
-        if(rowWasCreated):
-            self.send_response(201)
-            return_msg = "Row was created"
-        else:
-            self.send_response(500)
-            return_msg = "<p>An error has ocurred</p>"
 
-        self.end_headers()
-        self.wfile.write(return_msg.encode())
+        if( regex.search(r"\/createRow", self.path) ):
+
+            content_length = int(self.headers.get("Content-Length"))
+            data = self.rfile.read(content_length)
+            data = json.loads(data)
+            print(data)
+            rowWasCreated = CreateRegistryRow(data)
+            
+            if(rowWasCreated):
+                self.send_response(201)
+                return_msg = "Row was created"
+            else:
+                self.send_response(500)
+                return_msg = "<p>An error has ocurred</p>"
+
+            self.end_headers()
+            self.wfile.write(return_msg.encode())
+
+        elif( regex.search(r"\/receiveTransmission", self.path) ):
+            content_length = int(self.headers.get("Content-Length"))
+            data = self.rfile.read(content_length)
+            data = json.loads(data)
+            print(data)
+
+            recordWasCreated = InsertTransmissionRow(int(data["sensor"]))
+            if(recordWasCreated):
+                self.send_response(201)
+                return_msg = "Row was created"
+            else:
+                self.send_response(500)
+                return_msg = "<p>An error has ocurred</p>"
+
+            self.end_headers()
+            self.wfile.write(return_msg.encode())
+        else:
+            self.send_response(404)
+            self.wfile.write(b"<p> Page not found </p>")
 
 
 PORT = 8000

@@ -19,6 +19,17 @@ class MyHandler(BaseHTTPRequestHandler):
 
             self.wfile.write(index_data.encode())
 
+        elif( regex.search(r"\/favicon", self.path)):
+
+            self.send_response(200)
+            self.send_header("Content-type","image/png")
+            self.end_headers()
+
+            with open("static/antenna.png" , 'rb') as f:
+                img_data = f.read()
+
+            self.wfile.write(img_data)
+
         elif( regex.search( r"\/static\/.*", self.path) ):
             self.send_response(200)
             self.send_header("Content-type","image/png")

@@ -8,53 +8,51 @@ import time
 DB_file = "sampleDB.db"
 
 def RetrieveSensors():
-
+    """Retorna lista de sensores: [(Id, Local), ...]"""
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
-
-        cursor.execute("SELECT Id, Local from Sensores;")
+        cursor.execute("SELECT Id, Local FROM Sensores;")
         data = cursor.fetchall()
-
         connection.close()
         return data
-
     except sqlite3.Error as e:
-        connection.close()
-        print("An error has ocurred: ", e)
+        print("Erro ao acessar o banco:", e)
+        return []
+
 
 def RetrieveSensorData(sensorId):
-
+    """
+    Retorna os dados do sensor:
+    [ValoresTipo1, TimesTipo1, ValoresTipo2, TimesTipo2, ValoresTipo3, TimesTipo3]
+    """
     DataList = []
-
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
+        # Tipo 1 = Temperatura
+        cursor.execute(f"SELECT Valor FROM Registros WHERE Sensor={sensorId} AND Tipo=1 ORDER BY TimeStamp DESC LIMIT 5;")
+        DataList.append([v[0] for v in cursor.fetchall()])
+        cursor.execute(f"SELECT TimeStamp FROM Registros WHERE Sensor={sensorId} AND Tipo=1 ORDER BY TimeStamp DESC LIMIT 5;")
+        DataList.append([v[0] for v in cursor.fetchall()])
 
-        cursor.execute(f"SELECT Valor FROM Registros WHERE (Sensor={sensorId} AND Tipo=1) ORDER BY TimeStamp DESC LIMIT 5;")
-        DataList.append(cursor.fetchall())
+        # Tipo 2 = Poeira
+        cursor.execute(f"SELECT Valor FROM Registros WHERE Sensor={sensorId} AND Tipo=2 ORDER BY TimeStamp DESC LIMIT 5;")
+        DataList.append([v[0] for v in cursor.fetchall()])
+        cursor.execute(f"SELECT TimeStamp FROM Registros WHERE Sensor={sensorId} AND Tipo=2 ORDER BY TimeStamp DESC LIMIT 5;")
+        DataList.append([v[0] for v in cursor.fetchall()])
 
-        cursor.execute(f"SELECT TimeStamp FROM Registros WHERE (Sensor={sensorId} AND Tipo=1) ORDER BY TimeStamp DESC LIMIT 5;")
-        DataList.append(cursor.fetchall())
-
-        cursor.execute(f"SELECT Valor FROM Registros WHERE (Sensor={sensorId} AND Tipo=2) ORDER BY TimeStamp DESC LIMIT 5;")
-        DataList.append(cursor.fetchall())
-
-        cursor.execute(f"SELECT TimeStamp FROM Registros WHERE (Sensor={sensorId} AND Tipo=2) ORDER BY TimeStamp DESC LIMIT 5;")
-        DataList.append(cursor.fetchall())
-
-        cursor.execute(f"SELECT Valor FROM Registros WHERE (Sensor={sensorId} AND Tipo=3) ORDER BY TimeStamp DESC LIMIT 5;")
-        DataList.append(cursor.fetchall())
-
-        cursor.execute(f"SELECT TimeStamp FROM Registros WHERE (Sensor={sensorId} AND Tipo=3) ORDER BY TimeStamp DESC LIMIT 5;")
-        DataList.append(cursor.fetchall())
+        # Tipo 3 = Umidade
+        cursor.execute(f"SELECT Valor FROM Registros WHERE Sensor={sensorId} AND Tipo=3 ORDER BY TimeStamp DESC LIMIT 5;")
+        DataList.append([v[0] for v in cursor.fetchall()])
+        cursor.execute(f"SELECT TimeStamp FROM Registros WHERE Sensor={sensorId} AND Tipo=3 ORDER BY TimeStamp DESC LIMIT 5;")
+        DataList.append([v[0] for v in cursor.fetchall()])
 
         connection.close()
         return DataList
-
     except sqlite3.Error as e:
-        connection.close()
-        print("An error has ocurred: ", e)
+        print("Erro ao acessar o banco:", e)
+        return [[], [], [], [], [], []]
 
 
 def AddSensors(HTML_file):
@@ -82,6 +80,7 @@ def AddSensors(HTML_file):
 
         li.append(button)
 
+        # add a delete button to allow removing the sensor
         delete_btn = soup.new_tag("button")
         delete_btn.string = "Delete"
         delete_btn["onclick"] = f"deleteSensor('{SensorList[list_pointer-1][0]}')"
@@ -217,7 +216,7 @@ def MakeGraphsForSensor(sensorId):
 
     ValoresTipo1 = DataList[0]
     TimesTipo1 = DataList[1]
-    DateTimes1 = [datetime.fromtimestamp(t[0]) for t in TimesTipo1]
+    DateTimes1 = [datetime.fromtimestamp(t) for t in TimesTipo1]
 
     print(DateTimes1)
 
@@ -232,7 +231,7 @@ def MakeGraphsForSensor(sensorId):
 
     ValoresTipo2 = DataList[2]
     TimesTipo2 = DataList[3]
-    DateTimes2 = [datetime.fromtimestamp(t[0]) for t in TimesTipo2]
+    DateTimes2 = [datetime.fromtimestamp(t) for t in TimesTipo2]
 
     plt.plot(DateTimes2, ValoresTipo2)
     plt.xlabel("Mes-Dia Hora:Minuto")
@@ -245,7 +244,7 @@ def MakeGraphsForSensor(sensorId):
 
     ValoresTipo3 = DataList[4]
     TimesTipo3 = DataList[5]
-    DateTimes3 = [datetime.fromtimestamp(t[0]) for t in TimesTipo3]
+    DateTimes3 = [datetime.fromtimestamp(t) for t in TimesTipo3]
 
     plt.plot(DateTimes3, ValoresTipo3)
     plt.xlabel("Mes-Dia Hora:Minuto")

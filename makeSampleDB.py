@@ -5,8 +5,8 @@ import os
 # tuplas (Id, Local)
 sensors = [
     (1, "LINF"),
-    (2, "LABCE"),
-    (3, "CASESO"),
+    (2, "ULEG"),
+    (3, "IPOL/IREL"),
 ]
 
 # tuplas (Valor, Tipo, TimeStamp, Sensor)

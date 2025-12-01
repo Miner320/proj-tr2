@@ -1,0 +1,140 @@
+\doxysection{gateway Namespace Reference}
+\hypertarget{namespacegateway}{}\label{namespacegateway}\index{gateway@{gateway}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{namespacegateway_ab1b8db344edf9ce10414ec74f83f30de}{SERIAL\+\_\+\+PORT}} = "{}COM35"{}
+\item 
+int \mbox{\hyperlink{namespacegateway_a4916973c210e801ab4a323e1daaf909f}{BAUDRATE}} = 9600
+\item 
+str \mbox{\hyperlink{namespacegateway_a0bb2a66d4776c2d7aa7b788201817a46}{SERVER\+\_\+\+IP}} = "{}127.\+0.\+0.\+9"{}
+\item 
+int \mbox{\hyperlink{namespacegateway_a09a564dbdaa64c30889c81be57f0f6ad}{SERVER\+\_\+\+PORT}} = 8000
+\item 
+\mbox{\hyperlink{namespacegateway_a0527967d7f0274bd8914c77f4bae7a5c}{ser}} = serial.\+Serial(\mbox{\hyperlink{namespacegateway_ab1b8db344edf9ce10414ec74f83f30de}{SERIAL\+\_\+\+PORT}}, \mbox{\hyperlink{namespacegateway_a4916973c210e801ab4a323e1daaf909f}{BAUDRATE}}, timeout=1)
+\item 
+\mbox{\hyperlink{namespacegateway_aa7bae797504484879276e803f66019a0}{line}} = ser.\+readline().decode().strip()
+\item 
+\mbox{\hyperlink{namespacegateway_ae6b56c921b8f2315d20c9904afa84b60}{temp}}
+\item 
+\mbox{\hyperlink{namespacegateway_ab17c4ff1988759f1f20d83e1c772c718}{umid}}
+\item 
+dict \mbox{\hyperlink{namespacegateway_a991716617b452e6b1697029df9862451}{data\+\_\+temp}}
+\item 
+dict \mbox{\hyperlink{namespacegateway_ada2e3a15d8fbcc138b44aab5a5d6ec28}{headers}} = \{"{}Content-\/Type"{}\+: "{}application/json"{}\}
+\item 
+\mbox{\hyperlink{namespacegateway_ab472f602abc961faeaeaeb27cd4b6e8e}{conn}} = http.\+client.\+HTTPConnection(\mbox{\hyperlink{namespacegateway_a0bb2a66d4776c2d7aa7b788201817a46}{SERVER\+\_\+\+IP}}, \mbox{\hyperlink{namespacegateway_a09a564dbdaa64c30889c81be57f0f6ad}{SERVER\+\_\+\+PORT}})
+\item 
+\mbox{\hyperlink{namespacegateway_a21afd0df924322f87a0590c67f7d7bc3}{body}}
+\item 
+\mbox{\hyperlink{namespacegateway_ad1c38e5eb2d3edaab343028b14131037}{response}} = conn.\+getresponse()
+\item 
+dict \mbox{\hyperlink{namespacegateway_a9315fe54214badd1b7d4a36fe154fa30}{data\+\_\+umid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacegateway_a4916973c210e801ab4a323e1daaf909f}\label{namespacegateway_a4916973c210e801ab4a323e1daaf909f} 
+\index{gateway@{gateway}!BAUDRATE@{BAUDRATE}}
+\index{BAUDRATE@{BAUDRATE}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{BAUDRATE}{BAUDRATE}}
+{\footnotesize\ttfamily int gateway.\+BAUDRATE = 9600}
+
+\Hypertarget{namespacegateway_a21afd0df924322f87a0590c67f7d7bc3}\label{namespacegateway_a21afd0df924322f87a0590c67f7d7bc3} 
+\index{gateway@{gateway}!body@{body}}
+\index{body@{body}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{body}{body}}
+{\footnotesize\ttfamily gateway.\+body}
+
+\Hypertarget{namespacegateway_ab472f602abc961faeaeaeb27cd4b6e8e}\label{namespacegateway_ab472f602abc961faeaeaeb27cd4b6e8e} 
+\index{gateway@{gateway}!conn@{conn}}
+\index{conn@{conn}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{conn}{conn}}
+{\footnotesize\ttfamily gateway.\+conn = http.\+client.\+HTTPConnection(\mbox{\hyperlink{namespacegateway_a0bb2a66d4776c2d7aa7b788201817a46}{SERVER\+\_\+\+IP}}, \mbox{\hyperlink{namespacegateway_a09a564dbdaa64c30889c81be57f0f6ad}{SERVER\+\_\+\+PORT}})}
+
+\Hypertarget{namespacegateway_a991716617b452e6b1697029df9862451}\label{namespacegateway_a991716617b452e6b1697029df9862451} 
+\index{gateway@{gateway}!data\_temp@{data\_temp}}
+\index{data\_temp@{data\_temp}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{data\_temp}{data\_temp}}
+{\footnotesize\ttfamily dict gateway.\+data\+\_\+temp}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ \{}
+\DoxyCodeLine{00002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Valor"{}}:\ temp,}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Sensor"{}}:\ 1,}
+\DoxyCodeLine{00004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Tipo"{}}:\ 1,}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}TimeStamp"{}}:\ int(time.time())}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespacegateway_a9315fe54214badd1b7d4a36fe154fa30}\label{namespacegateway_a9315fe54214badd1b7d4a36fe154fa30} 
+\index{gateway@{gateway}!data\_umid@{data\_umid}}
+\index{data\_umid@{data\_umid}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{data\_umid}{data\_umid}}
+{\footnotesize\ttfamily dict gateway.\+data\+\_\+umid}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ \{}
+\DoxyCodeLine{00002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Valor"{}}:\ umid,}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Sensor"{}}:\ 1,}
+\DoxyCodeLine{00004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Tipo"{}}:\ 3,}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}TimeStamp"{}}:\ int(time.time())}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespacegateway_ada2e3a15d8fbcc138b44aab5a5d6ec28}\label{namespacegateway_ada2e3a15d8fbcc138b44aab5a5d6ec28} 
+\index{gateway@{gateway}!headers@{headers}}
+\index{headers@{headers}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{headers}{headers}}
+{\footnotesize\ttfamily gateway.\+headers = \{"{}Content-\/Type"{}\+: "{}application/json"{}\}}
+
+\Hypertarget{namespacegateway_aa7bae797504484879276e803f66019a0}\label{namespacegateway_aa7bae797504484879276e803f66019a0} 
+\index{gateway@{gateway}!line@{line}}
+\index{line@{line}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily gateway.\+line = ser.\+readline().decode().strip()}
+
+\Hypertarget{namespacegateway_ad1c38e5eb2d3edaab343028b14131037}\label{namespacegateway_ad1c38e5eb2d3edaab343028b14131037} 
+\index{gateway@{gateway}!response@{response}}
+\index{response@{response}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{response}{response}}
+{\footnotesize\ttfamily gateway.\+response = conn.\+getresponse()}
+
+\Hypertarget{namespacegateway_a0527967d7f0274bd8914c77f4bae7a5c}\label{namespacegateway_a0527967d7f0274bd8914c77f4bae7a5c} 
+\index{gateway@{gateway}!ser@{ser}}
+\index{ser@{ser}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{ser}{ser}}
+{\footnotesize\ttfamily gateway.\+ser = serial.\+Serial(\mbox{\hyperlink{namespacegateway_ab1b8db344edf9ce10414ec74f83f30de}{SERIAL\+\_\+\+PORT}}, \mbox{\hyperlink{namespacegateway_a4916973c210e801ab4a323e1daaf909f}{BAUDRATE}}, timeout=1)}
+
+\Hypertarget{namespacegateway_ab1b8db344edf9ce10414ec74f83f30de}\label{namespacegateway_ab1b8db344edf9ce10414ec74f83f30de} 
+\index{gateway@{gateway}!SERIAL\_PORT@{SERIAL\_PORT}}
+\index{SERIAL\_PORT@{SERIAL\_PORT}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{SERIAL\_PORT}{SERIAL\_PORT}}
+{\footnotesize\ttfamily str gateway.\+SERIAL\+\_\+\+PORT = "{}COM35"{}}
+
+\Hypertarget{namespacegateway_a0bb2a66d4776c2d7aa7b788201817a46}\label{namespacegateway_a0bb2a66d4776c2d7aa7b788201817a46} 
+\index{gateway@{gateway}!SERVER\_IP@{SERVER\_IP}}
+\index{SERVER\_IP@{SERVER\_IP}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{SERVER\_IP}{SERVER\_IP}}
+{\footnotesize\ttfamily str gateway.\+SERVER\+\_\+\+IP = "{}127.\+0.\+0.\+9"{}}
+
+\Hypertarget{namespacegateway_a09a564dbdaa64c30889c81be57f0f6ad}\label{namespacegateway_a09a564dbdaa64c30889c81be57f0f6ad} 
+\index{gateway@{gateway}!SERVER\_PORT@{SERVER\_PORT}}
+\index{SERVER\_PORT@{SERVER\_PORT}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{SERVER\_PORT}{SERVER\_PORT}}
+{\footnotesize\ttfamily int gateway.\+SERVER\+\_\+\+PORT = 8000}
+
+\Hypertarget{namespacegateway_ae6b56c921b8f2315d20c9904afa84b60}\label{namespacegateway_ae6b56c921b8f2315d20c9904afa84b60} 
+\index{gateway@{gateway}!temp@{temp}}
+\index{temp@{temp}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{temp}{temp}}
+{\footnotesize\ttfamily gateway.\+temp}
+
+\Hypertarget{namespacegateway_ab17c4ff1988759f1f20d83e1c772c718}\label{namespacegateway_ab17c4ff1988759f1f20d83e1c772c718} 
+\index{gateway@{gateway}!umid@{umid}}
+\index{umid@{umid}!gateway@{gateway}}
+\doxysubsubsection{\texorpdfstring{umid}{umid}}
+{\footnotesize\ttfamily gateway.\+umid}
+

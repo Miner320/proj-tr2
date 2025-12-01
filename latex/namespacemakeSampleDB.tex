@@ -1,0 +1,73 @@
+\doxysection{make\+Sample\+DB Namespace Reference}
+\hypertarget{namespacemakeSampleDB}{}\label{namespacemakeSampleDB}\index{makeSampleDB@{makeSampleDB}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{namespacemakeSampleDB_aae2e0d9254a9536a58c626f39071c6ac}{sensors}}
+\item 
+list \mbox{\hyperlink{namespacemakeSampleDB_a932eaf856f84d19efedc5f9fde1e3621}{data}}
+\item 
+\mbox{\hyperlink{namespacemakeSampleDB_a3ed26a3859fe574fc3575bd973040e0e}{file}} = open("{}sample\+DB.\+db"{}, \textquotesingle{}w\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacemakeSampleDB_a95b1bf8899353177f0b00992321be581}{connection}} = sqlite3.\+connect("{}sample\+DB.\+db"{})
+\item 
+\mbox{\hyperlink{namespacemakeSampleDB_a776d2ccfaaf7a591b42d7923cd4d68dd}{cursor}} = connection.\+cursor()
+\item 
+\mbox{\hyperlink{namespacemakeSampleDB_a519312e659eab3111e15771112e68943}{db\+\_\+creation\+\_\+script}} = open("{}db\+\_\+script.\+txt"{}, \textquotesingle{}r\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacemakeSampleDB_a6194d944cabcbdb6eddf13b21df3499a}{db\+\_\+creation\+\_\+command}} = db\+\_\+creation\+\_\+script.\+read().split("{}-\/-\/"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacemakeSampleDB_a95b1bf8899353177f0b00992321be581}\label{namespacemakeSampleDB_a95b1bf8899353177f0b00992321be581} 
+\index{makeSampleDB@{makeSampleDB}!connection@{connection}}
+\index{connection@{connection}!makeSampleDB@{makeSampleDB}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily make\+Sample\+DB.\+connection = sqlite3.\+connect("{}sample\+DB.\+db"{})}
+
+\Hypertarget{namespacemakeSampleDB_a776d2ccfaaf7a591b42d7923cd4d68dd}\label{namespacemakeSampleDB_a776d2ccfaaf7a591b42d7923cd4d68dd} 
+\index{makeSampleDB@{makeSampleDB}!cursor@{cursor}}
+\index{cursor@{cursor}!makeSampleDB@{makeSampleDB}}
+\doxysubsubsection{\texorpdfstring{cursor}{cursor}}
+{\footnotesize\ttfamily make\+Sample\+DB.\+cursor = connection.\+cursor()}
+
+\Hypertarget{namespacemakeSampleDB_a932eaf856f84d19efedc5f9fde1e3621}\label{namespacemakeSampleDB_a932eaf856f84d19efedc5f9fde1e3621} 
+\index{makeSampleDB@{makeSampleDB}!data@{data}}
+\index{data@{data}!makeSampleDB@{makeSampleDB}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily list make\+Sample\+DB.\+data}
+
+\Hypertarget{namespacemakeSampleDB_a6194d944cabcbdb6eddf13b21df3499a}\label{namespacemakeSampleDB_a6194d944cabcbdb6eddf13b21df3499a} 
+\index{makeSampleDB@{makeSampleDB}!db\_creation\_command@{db\_creation\_command}}
+\index{db\_creation\_command@{db\_creation\_command}!makeSampleDB@{makeSampleDB}}
+\doxysubsubsection{\texorpdfstring{db\_creation\_command}{db\_creation\_command}}
+{\footnotesize\ttfamily make\+Sample\+DB.\+db\+\_\+creation\+\_\+command = db\+\_\+creation\+\_\+script.\+read().split("{}-\/-\/"{})}
+
+\Hypertarget{namespacemakeSampleDB_a519312e659eab3111e15771112e68943}\label{namespacemakeSampleDB_a519312e659eab3111e15771112e68943} 
+\index{makeSampleDB@{makeSampleDB}!db\_creation\_script@{db\_creation\_script}}
+\index{db\_creation\_script@{db\_creation\_script}!makeSampleDB@{makeSampleDB}}
+\doxysubsubsection{\texorpdfstring{db\_creation\_script}{db\_creation\_script}}
+{\footnotesize\ttfamily make\+Sample\+DB.\+db\+\_\+creation\+\_\+script = open("{}db\+\_\+script.\+txt"{}, \textquotesingle{}r\textquotesingle{})}
+
+\Hypertarget{namespacemakeSampleDB_a3ed26a3859fe574fc3575bd973040e0e}\label{namespacemakeSampleDB_a3ed26a3859fe574fc3575bd973040e0e} 
+\index{makeSampleDB@{makeSampleDB}!file@{file}}
+\index{file@{file}!makeSampleDB@{makeSampleDB}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily make\+Sample\+DB.\+file = open("{}sample\+DB.\+db"{}, \textquotesingle{}w\textquotesingle{})}
+
+\Hypertarget{namespacemakeSampleDB_aae2e0d9254a9536a58c626f39071c6ac}\label{namespacemakeSampleDB_aae2e0d9254a9536a58c626f39071c6ac} 
+\index{makeSampleDB@{makeSampleDB}!sensors@{sensors}}
+\index{sensors@{sensors}!makeSampleDB@{makeSampleDB}}
+\doxysubsubsection{\texorpdfstring{sensors}{sensors}}
+{\footnotesize\ttfamily list make\+Sample\+DB.\+sensors}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ (1,\ \textcolor{stringliteral}{"{}LINF"{}}),}
+\DoxyCodeLine{00003\ \ \ \ \ (2,\ \textcolor{stringliteral}{"{}ULEG"{}}),}
+\DoxyCodeLine{00004\ \ \ \ \ (3,\ \textcolor{stringliteral}{"{}IPOL/IREL"{}}),}
+\DoxyCodeLine{00005\ ]}
+
+\end{DoxyCode}

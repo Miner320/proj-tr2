@@ -3,7 +3,18 @@ from aux import AddSensors, CreateRegistryRow, GetActiveSensors, InsertTransmiss
 import json, re as regex
 
 class MyHandler(BaseHTTPRequestHandler):
+    """
+    @brief Classe que lida com requisições HTTP GET e POST
+    """
+
+
     def do_GET(self):
+        """
+        @brief Lida com requisições GET
+        '/' - Retorna a página HTML principal com sensores adicionados
+        '/static/.*' - Retorna arquivos estáticos (imagens)
+        '/activeSensors' - Retorna uma lista JSON de sensores ativos
+        """
 
         if(self.path == "/"):
 
@@ -56,6 +67,13 @@ class MyHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"<p> Page not found </p>")
 
     def do_POST(self):
+        """
+        @brief Lida com requisições POST
+        '/createRow' - Cria uma nova linha de registro no banco de dados
+        '/receiveTransmission' - Insere ou atualiza o registro de transmissão para um sensor
+        '/deleteSensor' - Deleta um sensor do banco de dados
+        '/renameSensor' - Renomeia o campo 'Local' de um sensor
+        """
 
         if( regex.search(r"\/createRow", self.path) ):
 

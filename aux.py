@@ -8,7 +8,11 @@ import time
 DB_file = "sampleDB.db"
 
 def RetrieveSensors():
-    """Retorna lista de sensores: [(Id, Local), ...]"""
+    """
+    @brief Retorna a lista de sensores no formato [(Id, Local), (Id, Local), ...]  
+    @return Lista de tuplas com Id e Local dos sensores
+
+    """
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
@@ -23,8 +27,10 @@ def RetrieveSensors():
 
 def RetrieveSensorData(sensorId):
     """
-    Retorna os dados do sensor:
-    [ValoresTipo1, TimesTipo1, ValoresTipo2, TimesTipo2, ValoresTipo3, TimesTipo3]
+    @brief Retorna os últimos 5 registros de cada tipo para o sensor especificado
+    @param sensorId Id do sensor
+    @return Lista contendo 6 listas internas:
+            [ValoresTipo1, TimeStampsTipo1, ValoresTipo2, TimeStampsTipo2, ValoresTipo3, TimeStampsTipo3]
     """
     DataList = []
     try:
@@ -56,6 +62,12 @@ def RetrieveSensorData(sensorId):
 
 
 def AddSensors(HTML_file):
+    """
+    @brief Adiciona os sensores na página HTML fornecida
+    @param HTML_file Conteúdo HTML como string
+    @return Conteúdo HTML modificado como string
+
+    """
 
     SensorList = RetrieveSensors()
     soup = Soup(HTML_file)
@@ -98,6 +110,12 @@ def AddSensors(HTML_file):
 
 
 def DeleteSensor(sensorId):
+    """
+    @brief Deleta o sensor especificado do banco de dados
+    @param sensorId Id do sensor a ser deletado
+    @return True se deletado com sucesso, False caso contrário"""
+
+
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
@@ -123,6 +141,12 @@ def DeleteSensor(sensorId):
 
 
 def RenameSensor(sensorId, newLocal):
+    """
+    @brief Renomeia o campo 'Local' do sensor especificado
+    @param sensorId Id do sensor a ser renomeado
+    @param newLocal Novo nome para o campo 'Local'
+    @return True se renomeado com sucesso, False caso contrário"""
+
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
@@ -142,6 +166,10 @@ def RenameSensor(sensorId, newLocal):
         return False
 
 def GetActiveSensors():
+    """
+    @brief Retorna a lista de sensores ativos (com transmissões nos últimos 30 minutos)
+    @return Lista de Ids dos sensores ativos"""
+
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
@@ -158,6 +186,11 @@ def GetActiveSensors():
         print("an error has ocurred in the DB")
 
 def InsertTransmissionRow(SensorId):
+    """
+    @brief Insere ou atualiza o registro de transmissão para o sensor especificado
+    @param SensorId Id do sensor
+    @return True se a operação foi bem-sucedida, False caso contrário"""
+
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
@@ -181,6 +214,12 @@ def InsertTransmissionRow(SensorId):
 
 
 def CreateRegistryRow(json_data):
+    """
+    @brief Cria um novo registro na tabela Registros com os dados fornecidos
+    @param json_data Dicionário contendo os dados do registro
+    @return True se o registro foi criado com sucesso, False caso contrário
+    """
+
     try:
         connection = sqlite3.connect(DB_file)
         cursor = connection.cursor()
@@ -210,6 +249,10 @@ def CreateRegistryRow(json_data):
 
 
 def MakeGraphsForSensor(sensorId):
+    """
+    @brief Gera gráficos para os dados do sensor especificado e salva como imagens PNG
+    @param sensorId Id do sensor
+    @return None"""
 
     DataList = RetrieveSensorData(sensorId)
     # Colunas: 0-Valores tipo 1; 1-TimeStamps tipo 1; 2-Valores tipo 2; 3-TimeStamps tipo 2; 4-Valores tipo 3; 5-TimeStamps tipo 3
@@ -258,6 +301,9 @@ def MakeGraphsForSensor(sensorId):
     return
 
 def PlotAllGraphs():
+    """
+    @brief Gera gráficos para todos os sensores no banco de dados
+    @return None"""
 
     SensorList = RetrieveSensors()
     for sensor in SensorList:

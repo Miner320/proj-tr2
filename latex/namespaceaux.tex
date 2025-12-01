@@ -1,0 +1,133 @@
+\doxysection{aux Namespace Reference}
+\hypertarget{namespaceaux}{}\label{namespaceaux}\index{aux@{aux}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceaux_ace7f189ceb29f8f8364d23ddbbeb85b1}{Retrieve\+Sensors}} ()
+\item 
+\mbox{\hyperlink{namespaceaux_ad2df1b0d7766f45535cd2baf44fb18c8}{Retrieve\+Sensor\+Data}} (sensor\+Id)
+\item 
+\mbox{\hyperlink{namespaceaux_a9a0a515b3abd9f8eef06551eaaf770aa}{Add\+Sensors}} (HTML\+\_\+file)
+\item 
+\mbox{\hyperlink{namespaceaux_a045e1eade96ba692106c4026f2303b84}{Delete\+Sensor}} (sensor\+Id)
+\item 
+\mbox{\hyperlink{namespaceaux_a9f4fcbbd3b5e3ac5e342cf9df3f5c563}{Rename\+Sensor}} (sensor\+Id, new\+Local)
+\item 
+\mbox{\hyperlink{namespaceaux_a225f5d5dac90b69c8fc4b9672860892a}{Get\+Active\+Sensors}} ()
+\item 
+\mbox{\hyperlink{namespaceaux_a8e084c4a1f0e23a1220968565c1457b4}{Insert\+Transmission\+Row}} (Sensor\+Id)
+\item 
+\mbox{\hyperlink{namespaceaux_a0a66fe1b0fdd5cc06ad4dcd68c88d73c}{Create\+Registry\+Row}} (json\+\_\+data)
+\item 
+\mbox{\hyperlink{namespaceaux_a5d2bc5ab4270798162db5cd37fbbdc3b}{Make\+Graphs\+For\+Sensor}} (sensor\+Id)
+\item 
+\mbox{\hyperlink{namespaceaux_a62810ba1d5907683e8e87c2aaf1a8f7d}{Plot\+All\+Graphs}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{namespaceaux_a36fcde7e33a1ac8bbb61957f00374be0}{DB\+\_\+file}} = "{}sample\+DB.\+db"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceaux_a9a0a515b3abd9f8eef06551eaaf770aa}\label{namespaceaux_a9a0a515b3abd9f8eef06551eaaf770aa} 
+\index{aux@{aux}!AddSensors@{AddSensors}}
+\index{AddSensors@{AddSensors}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{AddSensors()}{AddSensors()}}
+{\footnotesize\ttfamily aux.\+Add\+Sensors (\begin{DoxyParamCaption}\item[{}]{HTML\+\_\+file }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Adiciona os sensores na página HTML fornecida
+@param HTML_file Conteúdo HTML como string
+@return Conteúdo HTML modificado como string\end{DoxyVerb}
+ \Hypertarget{namespaceaux_a0a66fe1b0fdd5cc06ad4dcd68c88d73c}\label{namespaceaux_a0a66fe1b0fdd5cc06ad4dcd68c88d73c} 
+\index{aux@{aux}!CreateRegistryRow@{CreateRegistryRow}}
+\index{CreateRegistryRow@{CreateRegistryRow}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{CreateRegistryRow()}{CreateRegistryRow()}}
+{\footnotesize\ttfamily aux.\+Create\+Registry\+Row (\begin{DoxyParamCaption}\item[{}]{json\+\_\+data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Cria um novo registro na tabela Registros com os dados fornecidos
+@param json_data Dicionário contendo os dados do registro
+@return True se o registro foi criado com sucesso, False caso contrário
+\end{DoxyVerb}
+ \Hypertarget{namespaceaux_a045e1eade96ba692106c4026f2303b84}\label{namespaceaux_a045e1eade96ba692106c4026f2303b84} 
+\index{aux@{aux}!DeleteSensor@{DeleteSensor}}
+\index{DeleteSensor@{DeleteSensor}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{DeleteSensor()}{DeleteSensor()}}
+{\footnotesize\ttfamily aux.\+Delete\+Sensor (\begin{DoxyParamCaption}\item[{}]{sensor\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Deleta o sensor especificado do banco de dados
+@param sensorId Id do sensor a ser deletado
+@return True se deletado com sucesso, False caso contrário\end{DoxyVerb}
+ \Hypertarget{namespaceaux_a225f5d5dac90b69c8fc4b9672860892a}\label{namespaceaux_a225f5d5dac90b69c8fc4b9672860892a} 
+\index{aux@{aux}!GetActiveSensors@{GetActiveSensors}}
+\index{GetActiveSensors@{GetActiveSensors}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{GetActiveSensors()}{GetActiveSensors()}}
+{\footnotesize\ttfamily aux.\+Get\+Active\+Sensors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Retorna a lista de sensores ativos (com transmissões nos últimos 30 minutos)
+@return Lista de Ids dos sensores ativos\end{DoxyVerb}
+ \Hypertarget{namespaceaux_a8e084c4a1f0e23a1220968565c1457b4}\label{namespaceaux_a8e084c4a1f0e23a1220968565c1457b4} 
+\index{aux@{aux}!InsertTransmissionRow@{InsertTransmissionRow}}
+\index{InsertTransmissionRow@{InsertTransmissionRow}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{InsertTransmissionRow()}{InsertTransmissionRow()}}
+{\footnotesize\ttfamily aux.\+Insert\+Transmission\+Row (\begin{DoxyParamCaption}\item[{}]{Sensor\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Insere ou atualiza o registro de transmissão para o sensor especificado
+@param SensorId Id do sensor
+@return True se a operação foi bem-sucedida, False caso contrário\end{DoxyVerb}
+ \Hypertarget{namespaceaux_a5d2bc5ab4270798162db5cd37fbbdc3b}\label{namespaceaux_a5d2bc5ab4270798162db5cd37fbbdc3b} 
+\index{aux@{aux}!MakeGraphsForSensor@{MakeGraphsForSensor}}
+\index{MakeGraphsForSensor@{MakeGraphsForSensor}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{MakeGraphsForSensor()}{MakeGraphsForSensor()}}
+{\footnotesize\ttfamily aux.\+Make\+Graphs\+For\+Sensor (\begin{DoxyParamCaption}\item[{}]{sensor\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Gera gráficos para os dados do sensor especificado e salva como imagens PNG
+@param sensorId Id do sensor
+@return None\end{DoxyVerb}
+ \Hypertarget{namespaceaux_a62810ba1d5907683e8e87c2aaf1a8f7d}\label{namespaceaux_a62810ba1d5907683e8e87c2aaf1a8f7d} 
+\index{aux@{aux}!PlotAllGraphs@{PlotAllGraphs}}
+\index{PlotAllGraphs@{PlotAllGraphs}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{PlotAllGraphs()}{PlotAllGraphs()}}
+{\footnotesize\ttfamily aux.\+Plot\+All\+Graphs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Gera gráficos para todos os sensores no banco de dados
+@return None\end{DoxyVerb}
+ \Hypertarget{namespaceaux_a9f4fcbbd3b5e3ac5e342cf9df3f5c563}\label{namespaceaux_a9f4fcbbd3b5e3ac5e342cf9df3f5c563} 
+\index{aux@{aux}!RenameSensor@{RenameSensor}}
+\index{RenameSensor@{RenameSensor}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{RenameSensor()}{RenameSensor()}}
+{\footnotesize\ttfamily aux.\+Rename\+Sensor (\begin{DoxyParamCaption}\item[{}]{sensor\+Id,  }\item[{}]{new\+Local }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Renomeia o campo 'Local' do sensor especificado
+@param sensorId Id do sensor a ser renomeado
+@param newLocal Novo nome para o campo 'Local'
+@return True se renomeado com sucesso, False caso contrário\end{DoxyVerb}
+ \Hypertarget{namespaceaux_ad2df1b0d7766f45535cd2baf44fb18c8}\label{namespaceaux_ad2df1b0d7766f45535cd2baf44fb18c8} 
+\index{aux@{aux}!RetrieveSensorData@{RetrieveSensorData}}
+\index{RetrieveSensorData@{RetrieveSensorData}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{RetrieveSensorData()}{RetrieveSensorData()}}
+{\footnotesize\ttfamily aux.\+Retrieve\+Sensor\+Data (\begin{DoxyParamCaption}\item[{}]{sensor\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Retorna os últimos 5 registros de cada tipo para o sensor especificado
+@param sensorId Id do sensor
+@return Lista contendo 6 listas internas:
+        [ValoresTipo1, TimeStampsTipo1, ValoresTipo2, TimeStampsTipo2, ValoresTipo3, TimeStampsTipo3]
+\end{DoxyVerb}
+ \Hypertarget{namespaceaux_ace7f189ceb29f8f8364d23ddbbeb85b1}\label{namespaceaux_ace7f189ceb29f8f8364d23ddbbeb85b1} 
+\index{aux@{aux}!RetrieveSensors@{RetrieveSensors}}
+\index{RetrieveSensors@{RetrieveSensors}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{RetrieveSensors()}{RetrieveSensors()}}
+{\footnotesize\ttfamily aux.\+Retrieve\+Sensors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Retorna a lista de sensores no formato [(Id, Local), (Id, Local), ...]  
+@return Lista de tuplas com Id e Local dos sensores\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceaux_a36fcde7e33a1ac8bbb61957f00374be0}\label{namespaceaux_a36fcde7e33a1ac8bbb61957f00374be0} 
+\index{aux@{aux}!DB\_file@{DB\_file}}
+\index{DB\_file@{DB\_file}!aux@{aux}}
+\doxysubsubsection{\texorpdfstring{DB\_file}{DB\_file}}
+{\footnotesize\ttfamily str aux.\+DB\+\_\+file = "{}sample\+DB.\+db"{}}
+

@@ -1,0 +1,67 @@
+\doxysection{server.\+My\+Handler Class Reference}
+\hypertarget{classserver_1_1MyHandler}{}\label{classserver_1_1MyHandler}\index{server.MyHandler@{server.MyHandler}}
+
+
+Inheritance diagram for server.\+My\+Handler\+:
+% FIG 0
+
+
+Collaboration diagram for server.\+My\+Handler\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classserver_1_1MyHandler_a8560d4c29e894dbc3b6d432aa18763c6}{do\+\_\+\+GET}} (self)
+\item 
+\mbox{\hyperlink{classserver_1_1MyHandler_abad07a8e79e9d57135439f1aca06dc37}{do\+\_\+\+POST}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classserver_1_1MyHandler_ad7ab2e04052c2c13a262877ff9b62d01}{path}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@brief Classe que lida com requisições HTTP GET e POST
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classserver_1_1MyHandler_a8560d4c29e894dbc3b6d432aa18763c6}\label{classserver_1_1MyHandler_a8560d4c29e894dbc3b6d432aa18763c6} 
+\index{server.MyHandler@{server.MyHandler}!do\_GET@{do\_GET}}
+\index{do\_GET@{do\_GET}!server.MyHandler@{server.MyHandler}}
+\doxysubsubsection{\texorpdfstring{do\_GET()}{do\_GET()}}
+{\footnotesize\ttfamily server.\+My\+Handler.\+do\+\_\+\+GET (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Lida com requisições GET
+'/' - Retorna a página HTML principal com sensores adicionados
+'/static/.*' - Retorna arquivos estáticos (imagens)
+'/activeSensors' - Retorna uma lista JSON de sensores ativos
+\end{DoxyVerb}
+ \Hypertarget{classserver_1_1MyHandler_abad07a8e79e9d57135439f1aca06dc37}\label{classserver_1_1MyHandler_abad07a8e79e9d57135439f1aca06dc37} 
+\index{server.MyHandler@{server.MyHandler}!do\_POST@{do\_POST}}
+\index{do\_POST@{do\_POST}!server.MyHandler@{server.MyHandler}}
+\doxysubsubsection{\texorpdfstring{do\_POST()}{do\_POST()}}
+{\footnotesize\ttfamily server.\+My\+Handler.\+do\+\_\+\+POST (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Lida com requisições POST
+'/createRow' - Cria uma nova linha de registro no banco de dados
+'/receiveTransmission' - Insere ou atualiza o registro de transmissão para um sensor
+'/deleteSensor' - Deleta um sensor do banco de dados
+'/renameSensor' - Renomeia o campo 'Local' de um sensor
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classserver_1_1MyHandler_ad7ab2e04052c2c13a262877ff9b62d01}\label{classserver_1_1MyHandler_ad7ab2e04052c2c13a262877ff9b62d01} 
+\index{server.MyHandler@{server.MyHandler}!path@{path}}
+\index{path@{path}!server.MyHandler@{server.MyHandler}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily server.\+My\+Handler.\+path}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{server_8py}{server.\+py}}\end{DoxyCompactItemize}
